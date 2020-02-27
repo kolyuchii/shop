@@ -30,7 +30,7 @@ const ProductListPage = props => {
         <PageComponent>
             <ControlsComponent
                 isLoading={props.isLoading}
-                isHidden={props.isHidden}
+                isHiddenItems={props.isHiddenItems}
                 resultsLength={items && items.length}
                 onHide={props.actions.hideItems}
             />
@@ -42,7 +42,7 @@ const ProductListPage = props => {
 };
 
 ProductListPage.propTypes = {
-    isHidden: PropTypes.bool,
+    isHiddenItems: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.object),
     actions: PropTypes.object,
     isLoading: PropTypes.bool,

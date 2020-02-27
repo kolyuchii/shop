@@ -8,7 +8,7 @@ describe('ControlsComponent', () => {
     it('Render results', () => {
         const wrapper = shallow(
             <ControlsComponent
-                isHidden={false}
+                isHiddenItems={false}
                 resultsLength={2}
                 onHide={jest.fn}
             />
@@ -21,7 +21,7 @@ describe('ControlsComponent', () => {
         const onHide = jest.fn();
         const wrapper = shallow(
             <ControlsComponent
-                isHidden={true}
+                isHiddenItems={true}
                 onHide={onHide}
             />
         );

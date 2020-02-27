@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const ControlsComponent = props => {
     let buttonText = 'Hide Sold Items';
-    if (props.isHidden) {
+    if (props.isHiddenItems) {
         buttonText = 'Show Sold Items';
     }
     return (
@@ -16,7 +16,7 @@ const ControlsComponent = props => {
 };
 
 ControlsComponent.propTypes = {
-    isHidden: PropTypes.bool,
+    isHiddenItems: PropTypes.bool,
     resultsLength: PropTypes.number,
     onHide: PropTypes.func,
     isLoading: PropTypes.bool,
