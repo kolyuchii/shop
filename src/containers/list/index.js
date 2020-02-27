@@ -22,6 +22,7 @@ export const ListContainer = props => {
     });
     return (
         <ListComponent
+            isLoading={props.isLoading}
             items={items}
         />
     );
@@ -32,11 +33,13 @@ ListContainer.propTypes = {
     actions: PropTypes.object,
     onOpenItem: PropTypes.func,
     favourite: PropTypes.object,
+    isLoading: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
     return {
         favourite: state.list.favourite,
+        isLoading: state.list.isLoading,
     }
 }
 

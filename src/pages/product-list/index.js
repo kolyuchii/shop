@@ -10,19 +10,26 @@ import {
     hideItems,
 } from 'store/list';
 
+// This is a main entity.
+// Here is a good place to send some requests (like fetch product items)
+
 const ProductListPage = props => {
+
+    // Fetching the list of items
+    // Since there is no API some pagination stuff was not implemented here
     useEffect(() => {
         props.actions.fetchItems();
     }, []);
 
     let items = props.items;
-    if (props.isHidden) {
+    if (props.isHiddenItems) {
         items = items.filter(item => !item.sold);
     }
 
     return (
         <PageComponent>
             <ControlsComponent
+                isLoading={props.isLoading}
                 isHidden={props.isHidden}
                 resultsLength={items && items.length}
                 onHide={props.actions.hideItems}
@@ -38,12 +45,14 @@ ProductListPage.propTypes = {
     isHidden: PropTypes.bool,
     items: PropTypes.arrayOf(PropTypes.object),
     actions: PropTypes.object,
+    isLoading: PropTypes.bool,
 };
 
 function mapStateToProps(state) {
     return {
         items: state.list.items,
-        isHidden: state.list.isHidden,
+        isHiddenItems: state.list.isHiddenItems,
+        isLoading: state.list.isLoading,
     }
 }
 

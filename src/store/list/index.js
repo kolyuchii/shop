@@ -5,29 +5,37 @@ import {
 const initialState = {
     items: null,
     favourite: {},
-    isHidden: false,
+    isHiddenItems: false,
+    isLoading: false,
 };
 
+// the isHiddenItems must be stored here
+// because at least two containers use it
 export function hideItems() {
     return function (dispatch, getState) {
         const state = getState();
-        dispatch(setIsHidden(!state.list.isHidden));
+        dispatch(setIsHidden(!state.list.isHiddenItems));
     }
 }
 
 export function fetchItems() {
     return function(dispatch) {
+        dispatch(setLoading(true));
         fetch(GET_PRODUCTS_URL)
             .then(response => response.json())
             .then(items => {
-                dispatch(setItems(items));
+                dispatch(setLoading(false));
+                dispatch(setItems(items)); // just store the response
             })
-            .catch(error => {
-                debugger;
+            .catch(() => {
+                dispatch(setLoading(false));
+                // let's assume there are no errors
+                // but in the real app it definitely must be handled
             });
     }
 }
 
+// No matter where the favourite object was updated
 export function toggleFavourite(id) {
     return function (dispatch, getState) {
         const state = getState();
@@ -40,11 +48,19 @@ export function toggleFavourite(id) {
     }
 }
 
+export const SET_LOADING = Symbol('SET_LOADING');
+export function setLoading(loading) {
+    return {
+        type: SET_LOADING,
+        loading
+    }
+}
+
 export const SET_IS_HIDDEN = Symbol('SET_IS_HIDDEN');
-export function setIsHidden(isHidden) {
+export function setIsHidden(isHiddenItems) {
     return {
         type: SET_IS_HIDDEN,
-        isHidden,
+        isHiddenItems,
     }
 }
 
@@ -76,7 +92,11 @@ export default function(state = initialState, action) {
             });
         case SET_IS_HIDDEN:
             return Object.assign({}, state, {
-                isHidden: action.isHidden,
+                isHiddenItems: action.isHiddenItems,
+            });
+        case SET_LOADING:
+            return Object.assign({}, state, {
+                isLoading: action.loading,
             });
         default:
             return state;
