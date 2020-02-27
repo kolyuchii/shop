@@ -1,0 +1,21 @@
+.list {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-column-gap: 20px;
+  grid-row-gap: 22px;
+
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: row4-start;
+  grid-row-end: row4-end;
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) {
+  .restaurants {
+    margin-top: 20px;
+    &__amount {
+      display: none;
+    }
+  }
+}

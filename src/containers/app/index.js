@@ -3,17 +3,16 @@ import { Switch, Route } from 'react-router-dom'
 import Header from 'containers/header';
 import ProductListContainer from 'pages/product-list';
 
-// Expire listings
-
-const AppContainer = () => (
-    <div className="app">
-        <Header />
-        <div className="app__container">
+const AppContainer = () => {
+    return (
+        <div className="app">
+            <Header/>
             <Switch>
-                <Route exact path='/' component={ProductListContainer}/>
+                {/*I case when we need more pages*/}
+                <Route exact path='/' component={ProductListContainer} />
             </Switch>
         </div>
-    </div>
-);
+    );
+};
 
 export default AppContainer;

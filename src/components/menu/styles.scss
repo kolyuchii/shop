@@ -1,0 +1,62 @@
+.dropdown {
+  position: relative;
+  margin: 0 20px 0 0;
+  &__value {
+    display: flex;
+    justify-content: center;
+    vertical-align: center;
+    align-items: center;
+    border: 1px solid #666;
+    border-radius: 3px;
+    padding: 0 5px 0 0;
+    cursor: pointer;
+
+    &_icon {
+      background-image: url("/images/like.png");
+      width: 30px;
+      height: 30px;
+      display: inline-block;
+      background-size: 65%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  &__list {
+    position: absolute;
+    width: 200px;
+    top: 35px;
+    right: 0;
+    list-style: none;
+    background-color: #fff;
+    border: 1px solid #666;
+    border-radius: 3px;
+    z-index: 1000;
+    display: none;
+
+    &.is-active {
+      display: block;
+    }
+
+    &-item {
+      padding: 10px 40px 10px 15px;
+      position: relative;
+      font-size: 0.85em;
+      &:hover {
+        background-color: #eee;
+      }
+      &_delete {
+        width: 30px;
+        position: absolute;
+        right: 8px;
+        top: 0;
+        bottom: 0;
+        display: inline-block;
+        background-image: url("/images/close.png");
+        background-size: 45%;
+        background-repeat: no-repeat;
+        background-position: center;
+        cursor: pointer;
+      }
+    }
+  }
+}
